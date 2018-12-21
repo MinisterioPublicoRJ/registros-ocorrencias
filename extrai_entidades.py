@@ -111,14 +111,19 @@ def extrai_informacoes_bloco(bloco):
 
 
 def extrai_artigos(doc):
+    # encontrado = re.finditer(
+    #     r'(art|art\.|artigos?)\s+(\d+).*?((do )?(inciso\d+|CPBO|C[oó]digo'
+    #     ' Penal|CP|CTBO|CT|C\.P|DL|C[óo]digo de processo Penal|Lei\s+[\d./]'
+    #     '+))',
+    #     doc,
+    #     re.IGNORECASE
+    # )
     encontrado = re.finditer(
-        r'(art|art\.|artigos?)\s+(\d+).*?((do )?(inciso\d+|CPBO|C[oó]digo'
-        ' Penal|CP|CTBO|CT|C\.P|DL|C[óo]digo de processo Penal|Lei\s+[\d./]'
-        '+))',
+        r'(Capitula[cç][aã]o:?\s+)(.*?)\n',
         doc,
         re.IGNORECASE
     )
-    return {'artigos': [artigo.group(0) for artigo in encontrado]}
+    return {'artigos': [artigo.group(2).strip() for artigo in encontrado]}
 
 
 # TODO: transforma essas funções de extracoes em uma função genérica

@@ -12,6 +12,14 @@ class TestLeitorPdf(TestCase):
 
         self.assertEqual(conteudo, esperado)
 
+    def test_le_conteudo_filename(self):
+        filename = 'tests/fixtures/teste.pdf'
+
+        conteudo = le_pdf(filename)
+        esperado = 'Documento PDF\nConteúdo qualquer'
+
+        self.assertEqual(conteudo, esperado)
+
 
 if __name__ == "__main__":
     main()
